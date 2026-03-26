@@ -8,6 +8,7 @@ public class SystembankApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SystembankApplication.class, args);
+		System.out.println("Eu creio que coisas maravilhosas estao por vir, obrigado meu Deus");
 	}
 
 }
