@@ -1,6 +1,7 @@
 package com.example.systembank.entity;
 
 import jakarta.persistence.*;
+import org.springframework.data.domain.Persistable;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -8,10 +9,8 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "transacoes")
-public class Transacao {
-
+public class Transacao implements Persistable<UUID> {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(nullable = false)
@@ -24,6 +23,8 @@ public class Transacao {
     @Column(nullable = false)
     private StatusTransacao status;
 
+    @Transient
+    private boolean isNew = true;
 
     public Transacao() {}
 
@@ -64,5 +65,16 @@ public class Transacao {
 
     public void setStatus(StatusTransacao status) {
         this.status = status;
+    }
+
+    @Override
+    public boolean isNew() {
+        return isNew;
+    }
+
+    @PrePersist
+    @PostLoad
+    void markNotNew() {
+        this.isNew = false;
     }
 }
