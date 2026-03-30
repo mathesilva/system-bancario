@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://127.0.0.1:5433/suadata-base
+    url: jdbc:postgresql://127.0.0.1:5433/reconciliation_db
     username: root
     password: root
     driver-class-name: org.postgresql.Driver
